@@ -1,9 +1,7 @@
-ARG ALPINE_VERSION=3.16
-
-FROM docker.io/tiredofit/nginx:alpine-${ALPINE_VERSION}
+FROM docker.io/denisolek/nginx
 LABEL maintainer="Dave Conroy (github.com/tiredofit)"
 
-ARG PHP_BASE
+ARG PHP_BASE=8.0
 
 ENV PHP_BASE=${PHP_BASE:-"8.0"} \
     PHP_ENABLE_APCU=TRUE \
@@ -36,8 +34,8 @@ ENV PHP_BASE=${PHP_BASE:-"8.0"} \
     CONTAINER_NAME=nginx-php-fpm-app \
     CONTAINER_ENABLE_MESSAGING=TRUE \
     NGINX_ENABLE_CREATE_SAMPLE_HTML=FALSE \
-    IMAGE_NAME="tiredofit/nginx-php-fpm" \
-    IMAGE_REPO_URL="https://github.com/tiredofit/docker-nginx-php-fpm/"
+    IMAGE_NAME="denisolek/nginx-php-fpm" \
+    IMAGE_REPO_URL="https://github.com/denisolek/docker-nginx-php-fpm/"
 
 ### Dependency Installation
 RUN  if [ "${PHP_BASE}" = "8.1" ] ; then export php_folder="81" ; else php_folder=${PHP_BASE:0:1} ; fi ; \
